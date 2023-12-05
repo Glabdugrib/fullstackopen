@@ -31,17 +31,28 @@ const Statistics = ({good, neutral, bad}) => {
   return (
     <>
       <h1>Statistics</h1>
-      <StatisticLine text="Good" value={good} isPercentage={false}/>
-      <StatisticLine text="Neutral" value={neutral} isPercentage={false}/>
-      <StatisticLine text="Bad" value={bad} isPercentage={false}/>
-      <StatisticLine text="All" value={total} isPercentage={false}/>
-      <StatisticLine text="Average" value={average()} isPercentage={false}/>
-      <StatisticLine text="Positive" value={positive()} isPercentage={true}/>
+      <table>
+        <tbody>
+          <StatisticLine text="Good" value={good} isPercentage={false}/>
+          <StatisticLine text="Neutral" value={neutral} isPercentage={false}/>
+          <StatisticLine text="Bad" value={bad} isPercentage={false}/>
+          <StatisticLine text="All" value={total} isPercentage={false}/>
+          <StatisticLine text="Average" value={average()} isPercentage={false}/>
+          <StatisticLine text="Positive" value={positive()} isPercentage={true}/>
+        </tbody>
+      </table>
     </>
   );
 };
 
-const StatisticLine = ({text, value, isPercentage}) => <p>{text}: {value} {isPercentage ? '%' : ''}</p>
+const StatisticLine = ({text, value, isPercentage}) => {
+  return (
+    <tr>
+      <td>{text}</td>
+      <td>{value} {isPercentage ? '%' : ''}</td>
+    </tr>
+  )
+}
 
 const App = () => {
   // save clicks of each button to its own state
