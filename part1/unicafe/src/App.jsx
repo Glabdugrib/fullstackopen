@@ -17,6 +17,15 @@ const Statistics = ({ good, neutral, bad }) => {
     return Math.round(good / total * 10000) / 100; 
   };
 
+  if (total === 0) {
+    return (
+      <>
+        <h1>Statistics</h1>
+        <h4>No feedback given</h4>
+      </>
+    );
+  }
+
   return (
     <>
       <h1>Statistics</h1>
