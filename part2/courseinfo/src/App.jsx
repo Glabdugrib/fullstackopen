@@ -12,13 +12,20 @@ const Content = ({parts}) => {
 
 const Part = ({part}) => <p>{part.name} {part.exercises}</p>
 
-// const Total = ({total}) => <p>Number of exercises {total}</p>
+const Total = ({total}) => <p>Number of exercises {total}</p>
 
 const Course = ({course}) => {
+  
+  const total = course.parts.reduce(
+    (accumulator, part) => accumulator + part.exercises,
+    0,
+  )
+
   return (
     <div>
       <Header name={course.name} />
       <Content parts={course.parts} />
+      <Total total={total} />
     </div>
   )
 }
@@ -45,15 +52,9 @@ const App = () => {
     ]
   }
 
-  // const total = course.parts.reduce(
-  //   (accumulator, part) => accumulator + part.exercises,
-  //   0,
-  // )
-
   return (
     <div>
       <Course course={course} />
-      {/* <Total total={total} /> */}
     </div>
   )
 }
