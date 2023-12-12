@@ -5,12 +5,17 @@ const App = () => {
     { name: 'Arto Hellas' }
   ]) 
   const [newName, setNewName] = useState('')
+  const [newNumber, setNewNumber] = useState('')
 
   const handleNameChange = (event) => {
     setNewName(event.target.value)
   }
 
-  const isNewNameValid = newName !== ''
+  const handleNumberChange = (event) => {
+    setNewNumber(event.target.value)
+  }
+
+  const areInputValid = () => newName !== '' & newNumber !== ''
 
   const addPerson = (event) => {
     event.preventDefault()
@@ -22,10 +27,12 @@ const App = () => {
     }
 
     const newPerson = {
-      name: newName
+      name: newName,
+      number: newNumber
     }
     setPersons(persons.concat(newPerson))
     setNewName('')
+    setNewNumber('')
   }
 
   return (
@@ -36,7 +43,10 @@ const App = () => {
           name: <input value={newName} onChange={handleNameChange} />
         </div>
         <div>
-          <button type="submit" disabled={!isNewNameValid}>add</button>
+          number: <input value={newNumber} onChange={handleNumberChange} />
+        </div>
+        <div>
+          <button type="submit" disabled={!areInputValid}>add</button>
         </div>
       </form>
       <h2>Numbers</h2>
